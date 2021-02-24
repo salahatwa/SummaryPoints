@@ -984,18 +984,18 @@ DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM dd, yyyy - HH:mm")
         System.out.println(parsed); // 2017-07-25T14:00
 ```
 
-与 `java.text.NumberFormat` 不同， `DateTimeFormatter`  是不可改变的， **线程安全**.
+Unlike `java.text.NumberFormat`, `DateTimeFormatter` is immutable and **thread safe**.
 
-更多语法详情， [参考这里](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html).
+For more syntax details, [Refer here](https://docs.oracle.com/javase/8/docs/api/java/time/format/DateTimeFormatter.html).
 
 
-## 注解
+## Comment
 
-Java 8中的注解是可重复的。让我们通过一个例子说明。
+The annotations in Java 8 are repeatable. Let us illustrate with an example.
 
-首先，我们定义一个包装器注解，它包含实际注解的数组：
+First, we define a wrapper annotation, which contains an array of actual annotations:
 
-代码：com.winterbe.java8.samples.misc.Annotations1
+Code: com.winterbe.java8.samples.misc.Annotations1
 
 ```java
 @interface Hints {
@@ -1008,16 +1008,16 @@ Java 8中的注解是可重复的。让我们通过一个例子说明。
 }
 ```
 
-Java 8允许我们通过声明注解 `@Repeatable`来使用相同类型的多个注释。
+Java 8 allows us to use multiple annotations of the same type by declaring the annotation @Repeatable.
 
-### 形式 1: 使用容器注解 (旧方式)
+### Form 1: Use container annotations (old way)
 
 ```java
 @Hints({@Hint("hint1"), @Hint("hint2")})
 class Person {}
 ```
 
-### 形式 2: 使用可重复注解 (新方式)
+### Form 2: Use repeatable annotations (new way)
 
 ```java
 @Hint("hint1")
@@ -1025,8 +1025,7 @@ class Person {}
 class Person {}
 ```
 
-形式2，java编译器隐式的设置`@Hints` 注解。这对于经由反射读取注解信息非常重要。
-
+Form 2, the java compiler implicitly sets the @Hints annotation. This is very important for reading annotation information via reflection.
 ```java
 Hint hint = Person.class.getAnnotation(Hint.class);
 System.out.println(hint);                   // null
@@ -1048,9 +1047,3 @@ In addition, Java 8 annotations have been extended with two new targets:
 @Target({ElementType.TYPE_PARAMETER, ElementType.TYPE_USE})
 @interface MyAnnotation {}
 ```
-
-## Written at the end
-
-**Receiving feedback from some students who are keen on technology, it is not particularly good to consider that github real-time notifications are not particularly good. In the future, some technical experience summaries and experience will be synchronized to the WeChat official account from time to time. Welcome to pay attention and communicate more. Progress together**
-
-![image](img/qrcode_for_gh_4461eb8b8689_258.jpg)
